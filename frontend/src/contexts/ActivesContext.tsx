@@ -6,17 +6,31 @@ export interface Actives {
     category: string,
     locale: string,
     date_buy: string,
-    value_buy: string,
-    nf: number,
+    value_buy: number,
+    nf: string,
     rate: number,
     description: string,
     provider: string,
-    life_util: string,
+    life_util: number,
+}
+
+interface ActiveCreate {
+    category: string,
+    locale: string,
+    date_buy: Date,
+    value_buy: number,
+    nf: string,
+    rate: number,
+    description: string,
+    provider: string,
+    life_util: Date,
 }
 
 interface ActivesContext {
     actives: Actives[],
     getUniqueActive: (id?: string) => Actives | undefined;
+    createNewactive: (active: ActiveCreate) => void;
+    removeActive: (id: string) => void;
 }
 
 export const ActivesContext = createContext({} as ActivesContext)
@@ -33,12 +47,22 @@ export function ActivesContextProvider({
         api.get("http://localhost:3000/actives").then((response) => setActives(response.data))
     },[]);
 
+    function createNewactive(active: ActiveCreate) {
+        api.post("http://localhost:3000/actives", active)
+        console.log
+    }
+
+    function removeActive(id: string) {
+        api.delete(`http://localhost:3000/actives/${id}`)
+        window.location.reload()
+    }
+
     function getUniqueActive(id?: string) {
         return actives.find(active => active.id === id); 
     }
 
     return (
-        <ActivesContext.Provider value={{actives, getUniqueActive}}>
+        <ActivesContext.Provider value={{actives, getUniqueActive,createNewactive, removeActive}}>
             {children}
         </ActivesContext.Provider>
     )

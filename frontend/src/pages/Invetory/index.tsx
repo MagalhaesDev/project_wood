@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { DeleteActive } from "./components/DeleteActive";
 import { useContext } from "react";
 import { ActivesContext } from "@/contexts/ActivesContext";
+import { dateFormatter, priceFormatter } from "@/utils/formatter";
 
 export function Invetory() {
   const { actives } = useContext(ActivesContext);
@@ -61,12 +62,12 @@ export function Invetory() {
         </TableHeader>
         <TableBody>
           {actives.map((active) => (
-            <TableRow id={active.id}>
+            <TableRow key={active.id}>
               <TableCell className="font-medium">{active.category}</TableCell>
-              <TableCell>{active.date_buy}</TableCell>
+              <TableCell>{dateFormatter.format(new Date(active.date_buy))}</TableCell>
               <TableCell>{active.description}</TableCell>
               <TableCell className="text-right">{active.locale}</TableCell>
-              <TableCell className="text-right">{active.value_buy}</TableCell>
+              <TableCell className="text-right">{priceFormatter.format(Number(active.value_buy))}</TableCell>
               <TableCell className="flex justify-end gap-3">
                 <EditActive id={active.id}/>
                 <NavLink
@@ -75,7 +76,7 @@ export function Invetory() {
                 >
                   <Info width={18} />
                 </NavLink>
-                <DeleteActive />
+                <DeleteActive  id={active.id}/>
               </TableCell>
             </TableRow>
           ))}

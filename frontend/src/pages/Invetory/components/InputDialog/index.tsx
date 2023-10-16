@@ -1,25 +1,45 @@
 import { Input } from "@/components/ui/input";
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../../../../components/ui/form";
+import { FormControl, FormField, FormItem } from "../../../../components/ui/form";
+import { Control, useFormContext } from "react-hook-form";
+import { formSchemaType } from "../NewActiveForm";
+import { z } from "zod";
 
+type ControlInputTypes = "category" | "description" | "date_buy" | "value_buy" | "provider" | "nf" | "rate" | "locale" | "life_util"
 
 interface InputDialog {
-    nameInput: string,
+    nameInput: ControlInputTypes,
     label: string,
+    controlInput: Control<z.infer<formSchemaType>>
+    type: string,
     placeholder?: string
 }
 
-export function InputDialog({nameInput,label,placeholder}: InputDialog) {
+interface ErrorsType {
+  errors: {
+    [key: string]: {
+      message: string
+    }
+  }
+}
+
+export function InputDialog({nameInput,label,placeholder,controlInput, type}: InputDialog) {
+   const { register, formState } = useFormContext()
+
+   const { errors } = formState as unknown as ErrorsType
 
     return (
         <FormField
             name={nameInput}
-            render={({ field }) => (
+            control={controlInput}
+            render={() => (
               <FormItem>
-                <FormLabel>{label}</FormLabel>
+                <label className="text-sm text-zinc-500">{label}</label>
                 <FormControl>
-                  <Input  {...field} placeholder={placeholder}/>
+                  <Input placeholder={placeholder} {...register(nameInput)} step="0.01" type={type} className={`text-zinc-400 ${errors[nameInput]?.message && 'border-red-500'}`} />
                 </FormControl>
-                <FormMessage />
+                <div className="text-red-800 text-[.75rem] h-2">
+                   {errors[nameInput]?.message && <p>{errors[nameInput]?.message}</p>}
+                </div>
               </FormItem>
             )}
           />

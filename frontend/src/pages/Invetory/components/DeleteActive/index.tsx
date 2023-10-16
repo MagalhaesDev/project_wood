@@ -9,9 +9,21 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { ActivesContext } from "@/contexts/ActivesContext";
 import { Trash2 } from "lucide-react";
+import { useContext } from "react";
 
-export function DeleteActive() {
+interface DeleteActiveProps {
+  id: string
+}
+
+export function DeleteActive({id}: DeleteActiveProps) {
+  const { removeActive } = useContext(ActivesContext)
+
+  function handleRemoveActive() {
+    removeActive(id)
+  }
+
   return (
     <AlertDialog>
       <AlertDialogTrigger>
@@ -29,7 +41,9 @@ export function DeleteActive() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction>Continuar</AlertDialogAction>
+          <button onClick={() => handleRemoveActive()}>
+            <AlertDialogAction>Continuar</AlertDialogAction>
+          </button>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

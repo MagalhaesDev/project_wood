@@ -11,14 +11,14 @@ datasource db {
 }
 
 model Actives {
-    id String @id @default(uuid())
-    category String
-    locale String
-    date_buy String
-    value_buy String
-    nf Decimal
-    rate Decimal
-    description String
-    provider String
-    life_util String
+  id          String   @id @default(uuid())
+  category    String
+  locale      String
+  date_buy    DateTime
+  value_buy   Decimal
+  nf          String
+  rate        Decimal
+  description String
+  provider    String
+  life_util   DateTime
 }
