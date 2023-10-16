@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/table";
 import { FilterActive } from "./components/FilterActive";
 import { DialogNewActive } from "./components/DialogNewActive";
-import { EditActive } from "./components/EditActive";
 import { NavLink } from "react-router-dom";
 import { Info, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -69,7 +68,6 @@ export function Invetory() {
               <TableCell className="text-right">{active.locale}</TableCell>
               <TableCell className="text-right">{priceFormatter.format(Number(active.value_buy))}</TableCell>
               <TableCell className="flex justify-end gap-3">
-                <EditActive id={active.id}/>
                 <NavLink
                   className="hover:text-green-700 transition ease-in 1s"
                   to={`/actives/${active.id}`}
