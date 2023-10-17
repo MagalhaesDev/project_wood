@@ -1,20 +1,12 @@
 import { Button } from "../../../../components/ui/button";
 import { Form } from "../../../../components/ui/form";
 import { useForm } from "react-hook-form";
-import { InputDialog } from "../InputDialog";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ActivesContext } from "@/contexts/ActivesContext";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { InputDialog } from "./components/InputDialog";
+import { SelectedDialog } from "./components/SelectedDialog";
 
 const formSchema = z
   .object({
@@ -57,7 +49,6 @@ const formSchema = z
 export type formSchemaType = typeof formSchema;
 
 export function NewActiveForm() {
-  const [position, setPosition] = useState("top");
   const { createNewactive } = useContext(ActivesContext);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -75,9 +66,21 @@ export function NewActiveForm() {
         onSubmit={form.handleSubmit(handleSubmitForm)}
       >
         <div className="grid grid-cols-2 gap-2 ">
-          <InputDialog
+          <SelectedDialog
             nameInput="category"
             label="Categoria"
+            controlInput={form.control}
+            type="text"
+          />
+          <SelectedDialog
+            nameInput="provider"
+            label="Fornecedor"
+            controlInput={form.control}
+            type="text"
+          />
+          <SelectedDialog
+            nameInput="locale"
+            label="Localização"
             controlInput={form.control}
             type="text"
           />
@@ -93,12 +96,7 @@ export function NewActiveForm() {
             controlInput={form.control}
             type="number"
           />
-          <InputDialog
-            nameInput="provider"
-            label="Fornecedor"
-            controlInput={form.control}
-            type="text"
-          />
+
           <InputDialog
             nameInput="nf"
             label="Nota Fiscal"
@@ -113,12 +111,6 @@ export function NewActiveForm() {
             type="number"
           />
           <InputDialog
-            nameInput="locale"
-            label="Localização"
-            controlInput={form.control}
-            type="text"
-          />
-          <InputDialog
             nameInput="date_buy"
             label="Data aquisição"
             controlInput={form.control}
@@ -130,28 +122,8 @@ export function NewActiveForm() {
             controlInput={form.control}
             type="date"
           />
-          
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline">Open</Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" >
-              <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuRadioGroup
-                value={position}
-                onValueChange={setPosition} 
-              >
-                <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="bottom">
-                  Bottom
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="right">
-                  Right
-                </DropdownMenuRadioItem>
-              </DropdownMenuRadioGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
+
+      
         </div>
 
         <Button

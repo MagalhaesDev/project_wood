@@ -47,7 +47,7 @@ export function Notification() {
         <DropdownMenuSeparator />
         {filteredActives.length > 0 ? (
           filteredActives.map((active) => (
-            <NavLink to={`/actives/${active.id}`}>
+            <NavLink to={`/actives/${active.id}`} key={active.id}>
               <DropdownMenuItem
                 className="cursor-pointer text-zinc-400 flex gap-2 justify-around"
                 key={active.id}

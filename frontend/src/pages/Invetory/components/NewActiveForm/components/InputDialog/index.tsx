@@ -1,8 +1,9 @@
 import { Input } from "@/components/ui/input";
-import { FormControl, FormField, FormItem } from "../../../../components/ui/form";
+import { FormControl, FormField, FormItem } from "../../../../../../components/ui/form";
 import { Control, useFormContext } from "react-hook-form";
-import { formSchemaType } from "../NewActiveForm";
+
 import { z } from "zod";
+import { formSchemaType } from "../..";
 
 type ControlInputTypes = "category" | "description" | "date_buy" | "value_buy" | "provider" | "nf" | "rate" | "locale" | "life_util"
 
