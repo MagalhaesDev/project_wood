@@ -22,3 +22,9 @@ model Actives {
   provider    String
   life_util   DateTime
 }
+
+model Register {
+  id String @id @default(uuid())
+  name String
+  date DateTime
+}

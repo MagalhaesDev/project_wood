@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useContext } from "react";
+import { RegistersContext } from "@/contexts/RegistersContext";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -24,13 +26,17 @@ interface SearchRegisterProps {
 }
 
 export function SearchRegister({label}: SearchRegisterProps) {
+  const { createNewRegister } = useContext(RegistersContext);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
   function handleSearchRegister(data: z.infer<typeof FormSchema>) {
-    console.log(data);
+    createNewRegister(data)
   }
+
+
 
   return (
     <>

@@ -1,6 +1,7 @@
 import cors from '@fastify/cors';
 import fastify from 'fastify';
 import { activesRoutes } from './routes/active';
+import { registerRoutes } from './routes/register';
 
 const app = fastify()
 
@@ -9,6 +10,7 @@ app.register(cors, {
 });
 
 app.register(activesRoutes)
+app.register(registerRoutes)
 
 app
   .listen({

@@ -11,3 +11,10 @@ CREATE TABLE "Actives" (
     "provider" TEXT NOT NULL,
     "life_util" DATETIME NOT NULL
 );
+
+-- CreateTable
+CREATE TABLE "Register" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "name" TEXT NOT NULL,
+    "date" DATETIME NOT NULL
+);
