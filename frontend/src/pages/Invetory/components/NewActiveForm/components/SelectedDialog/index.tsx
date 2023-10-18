@@ -83,7 +83,7 @@ export function SelectedDialog({
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <SearchRegister label={label}/>
+                  <SearchRegister label={label} nameInput={nameInput}/>
                 </DialogHeader>
               </DialogContent>
             </Dialog>

@@ -14,7 +14,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { RegistersContext } from "@/contexts/RegistersContext";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -26,13 +28,14 @@ const FormSchema = z.object({
 
 
 export function NewRegisterForm() {
+  const { createNewRegister } = useContext(RegistersContext);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
 
   function handleNewRegister(data: z.infer<typeof FormSchema>) {
-    console.log(data);
+    createNewRegister(data);
   }
 
   return (

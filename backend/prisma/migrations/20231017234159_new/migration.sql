@@ -16,5 +16,6 @@ CREATE TABLE "Actives" (
 CREATE TABLE "Register" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
     "date" DATETIME NOT NULL
 );

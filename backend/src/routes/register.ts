@@ -12,16 +12,17 @@ export async function registerRoutes(app: FastifyInstance) {
     
       app.post('/register', async(request, response) => {
         const paramsBody = z.object( {
-          name: z.string()
+          name: z.string(),
+          type: z.enum(["provider", "category", "locale"]),
         }
         )
       
-        const { name } = paramsBody.parse(request.body)
+        const register = paramsBody.parse(request.body)
       
         try {
           await prisma.register.create({
              data: {
-              name,
+              ...register,
               date: new Date(), 
              }    
           })

@@ -24,7 +24,8 @@ model Actives {
 }
 
 model Register {
-  id String @id @default(uuid())
+  id   String   @id @default(uuid())
   name String
+  type String
   date DateTime
 }

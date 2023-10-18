@@ -1,20 +1,25 @@
 import { api } from "@/services/api";
-import { ReactNode, useEffect, useState } from "react";
-import { createContext } from "vm";
+import { ReactNode, createContext, useEffect, useState } from "react";
 
-
-interface Registers {
+export interface Registers {
+    id: string,
     name: string,
-    date: Date
+    type: string,
+    date: Date,
 }
 
+interface RegistersCreate {
+    name: string,
+    type: string
+}
+
+
 interface RegistersContext {
-    registers: Registers[],
-    createNewRegister: (name: Registers) => void;
+   registers: Registers[],
+   createNewRegister: (data: RegistersCreate) => void
 }
 
 export const RegistersContext = createContext({} as RegistersContext)
-
 
 interface RegistersContextProviderProps {
     children: ReactNode
@@ -25,16 +30,16 @@ export function RegistersContextProvider({
 }: RegistersContextProviderProps) {
     const [registers,setRegisters] = useState<Registers[]>([]);
     useEffect(() => {
-        api.get("http://localhost:3000/actives").then((response) => setRegisters(response.data))
+        api.get("http://localhost:3000/register").then((response) => setRegisters(response.data))
     },[]);
 
-
-    function createNewRegister(name: Registers) {
-        api.post("http://localhost:3000/register", name)
+    function createNewRegister(data: RegistersCreate) {
+        api.post("http://localhost:3000/register", data)
+        window.location.reload()
     }
 
     return (
-        <RegistersContext.Provider value={{registers, createNewRegister}}>
+        <RegistersContext.Provider value={{registers,createNewRegister}}>
             {children}
         </RegistersContext.Provider>
     )
