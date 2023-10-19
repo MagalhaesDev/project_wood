@@ -3,15 +3,14 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { RadioGroup } from "@/components/ui/radio-group";
 import { Filter } from "lucide-react";
-import { RadioGroupItemContent } from "./components/RadioGroupItemContent";
+
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
+
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
@@ -37,69 +36,10 @@ export function FilterActive() {
         <Filter width={16} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="p-4 text-sm">
+
         <Form {...form}>
           <form className="flex flex-col items-center gap-5">
             <div className="flex gap-4">
-
-              <FormField
-                control={form.control}
-                name="type"
-                render={({ field }) => (
-                  <FormItem className="space-y-3">
-                    <FormLabel>Categoria:</FormLabel>
-                    <FormControl>
-                      <RadioGroup
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                        className="flex flex-col space-y-1"
-                      >
-                        <RadioGroupItemContent value="teste" title="teste" />
-                        <RadioGroupItemContent value="teste1" title="teste" />
-                      </RadioGroup>
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="type"
-                render={({ field }) => (
-                  <FormItem className="space-y-3">
-                    <FormLabel>Localização:</FormLabel>
-                    <FormControl>
-                      <RadioGroup
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                        className="flex flex-col space-y-1"
-                      >
-                        <RadioGroupItemContent value="teste" title="teste" />
-                        <RadioGroupItemContent value="teste1" title="teste" />
-                      </RadioGroup>
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="type"
-                render={({ field }) => (
-                  <FormItem className="space-y-3">
-                    <FormLabel>Fornecedor:</FormLabel>
-                    <FormControl>
-                      <RadioGroup
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                        className="flex flex-col space-y-1"
-                      >
-                        <RadioGroupItemContent value="teste" title="teste" />
-                        <RadioGroupItemContent value="teste1" title="teste" />
-                      </RadioGroup>
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
 
               <div>
                 <FormField

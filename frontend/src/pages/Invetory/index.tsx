@@ -6,7 +6,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { FilterActive } from "./components/FilterActive";
 import { DialogNewActive } from "./components/DialogNewActive";
 import { NavLink } from "react-router-dom";
 import { ClipboardEdit, Info, Search } from "lucide-react";
@@ -15,12 +14,16 @@ import { DeleteActive } from "./components/DeleteActive";
 import { useContext } from "react";
 import { ActivesContext } from "@/contexts/ActivesContext";
 import { dateFormatter, priceFormatter } from "@/utils/formatter";
+import { ComboboxForm } from "./components/FilterActive/components/ComboBox";
 
 export function Invetory() {
   const { actives } = useContext(ActivesContext);
 
   return (
     <main className="mt-5 px-[5rem]">
+      <div className="flex">
+      <ComboboxForm /> 
+      </div>
       <div className="flex justify-between mb-1">
         <div>
           <button className="bg-green-900 px-7 py-1.5 font-bold rounded-tl-sm">
@@ -42,7 +45,7 @@ export function Invetory() {
           </form>
         </div>
         <div className="flex items-center justify-center gap-4">
-          <FilterActive />
+       
           <DialogNewActive />
         </div>
       </div>
