@@ -24,15 +24,14 @@ import {
 import { Check, ChevronsUpDown } from "lucide-react"
 import { useContext } from "react"
 import { ActivesContext } from "@/contexts/ActivesContext"
-import { ControlInputTypes, formSchemaTypeBox } from "./ComboBox"
+import { ControlInputTypes } from "./ComboBox"
 import { Control } from "react-hook-form"
-import { z } from "zod";
 
 
 
 interface BoxItemProps {
     setValue: (type: ControlInputTypes, value: string) => void;
-    controlInput: Control<z.infer<formSchemaTypeBox>>,
+    controlInput: Control,
     nameInput: ControlInputTypes,
     label: string
 }

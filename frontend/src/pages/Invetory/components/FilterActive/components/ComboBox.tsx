@@ -1,8 +1,7 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import * as z from "zod"
+
 
 
 import {
@@ -12,27 +11,23 @@ import { Button } from "@/components/ui/button"
 import { BoxItem } from "./BoxItem"
 
 
-const FormSchema = z.object({
-  category: z.string(),
-  locale: z.string(),
-  provider: z.string(),
-})
 
 export type ControlInputTypes = "category" | "provider" | "locale" 
-export type formSchemaTypeBox = typeof FormSchema;
 
 export function ComboboxForm() {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-  })
+  const form = useForm()
 
   function setValue(type: ControlInputTypes, value: string) {
     form.setValue(type, value)
   }
   
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  function onSubmit(data: any) {
     console.log(data)
+  }
+
+  function handleRemoveFilter() {
+    window.location.reload()
   }
 
   return (
@@ -42,6 +37,7 @@ export function ComboboxForm() {
         <BoxItem setValue={setValue} controlInput={form.control} nameInput="provider" label="Fornecedor"/>
         <BoxItem setValue={setValue} controlInput={form.control} nameInput="locale" label="Localização"/>
         <Button type="submit" className="mt-5">Filtrar</Button>
+        <Button type="reset" className="mt-5 bg-red-700 text-zinc-200 hover:bg-red-800" onClick={handleRemoveFilter}>Remover</Button>
       </form>
     </Form>
   )
