@@ -6,7 +6,6 @@ import * as z from "zod";
 import { useContext } from "react";
 import { ActivesContext } from "@/contexts/ActivesContext";
 import { InputDialog } from "./components/InputDialog";
-import { SelectedDialog } from "./components/SelectedDialog";
 
 const formSchema = z
   .object({
@@ -66,19 +65,19 @@ export function NewActiveForm() {
         onSubmit={form.handleSubmit(handleSubmitForm)}
       >
         <div className="grid grid-cols-2 gap-2 ">
-          <SelectedDialog
+          <InputDialog
             nameInput="category"
             label="Categoria"
             controlInput={form.control}
             type="text"
           />
-          <SelectedDialog
+          <InputDialog
             nameInput="provider"
             label="Fornecedor"
             controlInput={form.control}
             type="text"
           />
-          <SelectedDialog
+          <InputDialog
             nameInput="locale"
             label="Localização"
             controlInput={form.control}

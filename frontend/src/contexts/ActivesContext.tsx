@@ -48,8 +48,15 @@ export function ActivesContextProvider({
     },[]);
 
     function createNewactive(active: ActiveCreate) {
-        api.post("http://localhost:3000/actives", active)
-        console.log
+        const formattedActive: ActiveCreate = {
+            ...active,
+            category: active.category.toUpperCase(),
+            locale: active.locale.toUpperCase(),
+            description: active.description.toUpperCase(),
+            provider: active.provider.toUpperCase(),
+        }
+        
+        api.post("http://localhost:3000/actives", formattedActive)
     }
 
     function removeActive(id: string) {

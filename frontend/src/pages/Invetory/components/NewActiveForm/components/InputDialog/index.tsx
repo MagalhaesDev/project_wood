@@ -36,7 +36,7 @@ export function InputDialog({nameInput,label,placeholder,controlInput, type}: In
               <FormItem>
                 <label className="text-sm text-zinc-500">{label}</label>
                 <FormControl>
-                  <Input placeholder={placeholder} {...register(nameInput)} step="0.01" type={type} className={`text-zinc-400 ${errors[nameInput]?.message && 'border-red-500'}`} />
+                  <Input placeholder={placeholder} {...register(nameInput)} type={type} className={`text-zinc-400 ${errors[nameInput]?.message && 'border-red-500'}`} />
                 </FormControl>
                 <div className="text-red-800 text-[.75rem] h-2">
                    {errors[nameInput]?.message && <p>{errors[nameInput]?.message}</p>}
