@@ -59,6 +59,8 @@ export function ActivesContextProvider({
         api.post("http://localhost:3000/actives", formattedActive)
     }
 
+    console.log(actives)
+
     function removeActive(id: string) {
         api.delete(`http://localhost:3000/actives/${id}`)
         window.location.reload()

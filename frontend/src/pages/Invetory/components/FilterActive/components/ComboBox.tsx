@@ -32,7 +32,7 @@ export function ComboboxForm() {
 
   return (
     <Form {...form} >
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" flex gap-2 items-center mb-10">
+      <form onSubmit={form.handleSubmit(onSubmit)} className=" flex flex-col gap-2 items-center mb-10 bg-stone-950 p-2 rounded-md">
         <BoxItem setValue={setValue} controlInput={form.control} nameInput="category" label="Categoria"/>
         <BoxItem setValue={setValue} controlInput={form.control} nameInput="provider" label="Fornecedor"/>
         <BoxItem setValue={setValue} controlInput={form.control} nameInput="locale" label="Localização"/>
