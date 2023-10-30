@@ -12,7 +12,6 @@ import {
     FormControl,
     FormField,
     FormItem,
-    FormLabel,
     FormMessage,
   } from "@/components/ui/form"
 
@@ -22,8 +21,8 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"  
 import { Check, ChevronsUpDown } from "lucide-react"
-import { useContext } from "react"
-import { ActivesContext } from "@/contexts/ActivesContext"
+import { useContext, useEffect, useState } from "react"
+import { Actives, ActivesContext } from "@/contexts/ActivesContext"
 import { ControlInputTypes } from "./ComboBox"
 import { Control } from "react-hook-form"
 
@@ -37,7 +36,23 @@ interface BoxItemProps {
 }
 
 export function BoxItem({setValue, controlInput, nameInput, label}:BoxItemProps) {
-  const { actives } = useContext(ActivesContext)
+  const { actives } = useContext(ActivesContext);
+  const [ itemFilter, setItemFilter ] = useState<Actives[]>([]);
+
+  useEffect(() => {
+    const contagem: {[nameInput: string]: number } = {};
+    const objetosFiltrados = actives.filter(obj => {
+      if (contagem[obj[nameInput]]) {
+        contagem[obj[nameInput]]++;
+      } else {
+        contagem[obj[nameInput]] = 1;
+      }
+      return contagem[obj[nameInput]] === 1;
+    });
+    setItemFilter(objetosFiltrados);
+  }, [actives,nameInput]);
+
+  
 
     return (
         <FormField
@@ -45,7 +60,6 @@ export function BoxItem({setValue, controlInput, nameInput, label}:BoxItemProps)
           name={nameInput}
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel >{label}</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -61,7 +75,7 @@ export function BoxItem({setValue, controlInput, nameInput, label}:BoxItemProps)
                         ? actives.find(
                             (active) => active[nameInput] === field.value
                           )?.[nameInput]
-                        : `Selecione ${label}`}
+                        : label}
                       <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                   </FormControl>
@@ -71,7 +85,7 @@ export function BoxItem({setValue, controlInput, nameInput, label}:BoxItemProps)
                     <CommandInput placeholder="Pesquise..." />
                     <CommandEmpty>Não há {label}</CommandEmpty>
                     <CommandGroup>
-                      {actives.map((active) => (
+                      {itemFilter.map((active) => (
                         <CommandItem
                           value={active[nameInput]}
                           key={active.id}

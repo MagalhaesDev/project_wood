@@ -1,6 +1,6 @@
 interface ActiveListProps {
     title: string,
-    description: string,
+    description: string | number | undefined,
 }
 
 export function ActiveList({title, description}:ActiveListProps) {

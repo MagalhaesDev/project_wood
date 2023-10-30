@@ -5,11 +5,11 @@ import { columns } from "./components/Columns"
  
  
 export function DataTableContent() {
-  const { actives } = useContext(ActivesContext)
+  const { actives, activesFiltered } = useContext(ActivesContext);
  
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={actives} />
+      <DataTable columns={columns} data={activesFiltered.length > 0 ? activesFiltered : actives} />
     </div>
   )
 }

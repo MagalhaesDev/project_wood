@@ -8,15 +8,14 @@ import { Active } from './pages/Invetory/components/Active'
 
 export function Router() {
 
-
   return (
     <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<DefaultLayout />}>
           <Route path="/" element={<Home/>} />
-          <Route path="/actives" element={<Invetory />} />
+          <Route path="/actives" element={<Invetory/>} />
           <Route path="/actives/:id" element={<Active />} />
-          <Route path="/graficos" element={<Graphics />} />
+          <Route path="/graficos" element={<Graphics/>} />
         </Route>
     </Routes>
   )

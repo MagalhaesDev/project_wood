@@ -49,7 +49,7 @@ export function Notification() {
           filteredActives.map((active) => (
             <NavLink to={`/actives/${active.id}`} key={active.id}>
               <DropdownMenuItem
-                className="cursor-pointer text-zinc-400 flex gap-2 justify-around"
+                className="cursor-pointer text-zinc-400 flex gap-2 justify-between"
                 key={active.id}
               >
                 <div className="flex gap-2 items-center justify-center">
