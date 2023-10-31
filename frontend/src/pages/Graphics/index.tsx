@@ -11,20 +11,20 @@ export function Graphics() {
   return (
     <>
       <Navegation />
-      <div className="flex gap-3 mt-10 ">
+      <div className="flex gap-3 mt-10 text-zinc-900">
         <ProviderGraphics />
         <CategoryGraphics />
       </div>
-      <div className=" bg-zinc-800 mt-3 flex flex-col">
-        <div className="text-center my-5">Categorias com os maiores valores</div>
+      <div className=" bg-zinc-800 mt-3 flex flex-col text-zinc-900">
+        <div className="text-center my-5 text-zinc-200 font-bold text-lg">Categorias com os maiores valores</div>
         <div className="flex gap-3 ">
           <MajorCategoryDonuts />
           <MajorCategoryGraphics />
         </div>
       </div>
-      <div className=" bg-zinc-800 mt-3 flex flex-col">
-        <div className="text-center my-5">Locais com os maiores valores</div>
-        <div className="flex gap-3 ">
+      <div className=" bg-zinc-800 mt-3 flex flex-col text-zinc-900">
+        <div className="text-center my-5 text-zinc-200 font-bold text-lg">Locais com os maiores valores</div>
+        <div className="flex gap-3">
           <MajorLocaleDonuts />
           <MajorLocaleGraphics />
         </div>

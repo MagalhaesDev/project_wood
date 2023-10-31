@@ -22,37 +22,56 @@ export function CategoryGraphics() {
     return acc;
   }, []);
 
- const categoriesSorted = categoriesFilter.sort((a, b) => b.quantity - a.quantity);
- categoriesSorted.splice(5)
+  const categoriesSorted = categoriesFilter.sort(
+    (a, b) => b.quantity - a.quantity
+  );
+  categoriesSorted.splice(5);
 
-  const categories = categoriesSorted.map(category => category.name);
-  const quantity = categoriesSorted.map(category => category.quantity)
+  const categories = categoriesSorted.map((category) => category.name);
+  const quantity = categoriesSorted.map((category) => category.quantity);
 
   const state: any = {
     series: [
       {
+        name: "Quantidade",
         data: quantity,
       },
     ],
     options: {
       chart: {
-        height: 200,
+        height: 350,
         type: "bar",
+        toolbar: {
+          show: false,
+        },
       },
       plotOptions: {
         bar: {
-          columnWidth: "20%",
+          columnWidth: "30%",
           distributed: true,
         },
       },
       dataLabels: {
         enabled: false,
       },
-      legend: {
-        show: false,
+      stroke: {
+        width: 2,
       },
       xaxis: {
+        labels: {
+          rotate: -45,
+          style: {
+            colors: "#fff",
+            fontSize: "12px",
+          },
+        },
         categories: categories,
+        tickPlacement: "on",
+      },
+      yaxis: {
+        title: {
+          text: "Valores",
+        },
         labels: {
           style: {
             colors: "#fff",
@@ -60,34 +79,25 @@ export function CategoryGraphics() {
           },
         },
       },
-      yaxis: {
-        labels: {
-          style: {
-              colors: "#fff",
-              fontSize: "12px",
-            },
-        },
-      },
       fill: {
-        type: 'gradient',
+        type: "gradient",
         gradient: {
-          
-          shade: 'dark',
+          shade: "dark",
           type: "horizontal",
           shadeIntensity: 0.5,
           gradientToColors: undefined,
           inverseColors: true,
           opacityFrom: 1,
           opacityTo: 1,
-          stops: [50, 0, 100]
+          stops: [50, 0, 100],
         },
-      }
+      },
     },
   };
 
   return (
     <div className="w-full flex flex-col items-center bg-zinc-800 p-2 rounded-md">
-      <h2>5 Maiores categorias</h2>
+      <h2 className="text-zinc-200 font-bold text-lg">Categorias</h2>
       <div className="donut w-4/5">
         <ReactApexChart
           options={state.options}
@@ -97,5 +107,5 @@ export function CategoryGraphics() {
         />
       </div>
     </div>
-  )
+  );
 }

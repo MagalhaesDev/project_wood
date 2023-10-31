@@ -22,74 +22,84 @@ export function ProviderGraphics() {
     return acc;
   }, []);
 
- const providersSorted = providersFilter.sort((a, b) => b.quantity - a.quantity);
- providersSorted.splice(5)
+  const providersSorted = providersFilter.sort(
+    (a, b) => b.quantity - a.quantity
+  );
+  providersSorted.splice(5);
 
-  const providers = providersSorted.map(provider => provider.name);
-  const quantity = providersSorted.map(provider => provider.quantity)
+  const providers = providersSorted.map((provider) => provider.name);
+  const quantity = providersSorted.map((provider) => provider.quantity);
 
   const state: any = {
     series: [
       {
+        name: "Quantidade",
         data: quantity,
       },
     ],
     options: {
       chart: {
-        height: 200,
+        height: 350,
         type: "bar",
+        toolbar: {
+          show: false,
+        },
       },
       plotOptions: {
         bar: {
-          columnWidth: "20%",
+          columnWidth: "30%",
           distributed: true,
-
         },
       },
       dataLabels: {
         enabled: false,
       },
-      legend: {
-        show: false,
+      stroke: {
+        width: 2,
       },
       xaxis: {
-        categories: providers,
         labels: {
-          rotate: 0,
+          rotate: -45,
+          style: {
+            colors: "#fff",
+            fontSize: "12px",
+          },
+        },
+        categories: providers,
+        tickPlacement: "on",
+      },
+      yaxis: {
+        title: {
+          text: "Valores",
+        },
+        labels: {
           style: {
             colors: "#fff",
             fontSize: "12px",
           },
         },
       },
-      yaxis: {
-        labels: {
-          style: {
-              colors: "#fff",
-              fontSize: "12px",
-            },
-        },
-      },
       fill: {
-        type: 'gradient',
+        type: "gradient",
         gradient: {
-          
-          shade: 'dark',
+          shade: "dark",
           type: "horizontal",
           shadeIntensity: 0.5,
           gradientToColors: undefined,
           inverseColors: true,
           opacityFrom: 1,
           opacityTo: 1,
-          stops: [50, 0, 100]
+          stops: [50, 0, 100],
         },
-      }
+      },
     },
   };
 
   return (
     <div className="w-full flex flex-col items-center bg-zinc-800 p-2 rounded-md">
-      <h2>5 Maiores fornecedores</h2>
+      <h2 className="text-zinc-200 font-bold text-lg">
+        Fornecedores
+      </h2>
       <div className="donut w-4/5">
         <ReactApexChart
           options={state.options}
@@ -99,5 +109,5 @@ export function ProviderGraphics() {
         />
       </div>
     </div>
-  )
+  );
 }

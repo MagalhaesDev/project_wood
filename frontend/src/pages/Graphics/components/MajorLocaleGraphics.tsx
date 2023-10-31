@@ -31,67 +31,72 @@ export function MajorLocaleGraphics() {
   const locales = localesSorted.map((locale) => locale.name);
   const values = localesSorted.map((locale) => locale.quantity);
   
+  
   const state: any = {
-          
-    series: [{
-      name: 'Valores',
-      data: values,
-    }],
+    series: [
+      {
+        name: "Quantidade",
+        data: values,
+      },
+    ],
     options: {
       chart: {
         height: 350,
-        type: 'bar',
+        type: "bar",
+        toolbar: {
+          show: false,
+        },
       },
       plotOptions: {
         bar: {
-          columnWidth: '30%',
-          distributed: true,  
-        }
-
+          columnWidth: "30%",
+          distributed: true,
+        },
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       stroke: {
-        width: 2
+        width: 2,
       },
       xaxis: {
         labels: {
           rotate: -45,
           style: {
-              colors: "#fff",
-              fontSize: "12px",
-            },
+            colors: "#fff",
+            fontSize: "12px",
+          },
         },
         categories: locales,
-        tickPlacement: 'on'
+        tickPlacement: "on",
       },
       yaxis: {
         title: {
-          text: 'Valores',
+          text: "Valores",
         },
         labels: {
           style: {
-              colors: "#fff",
-              fontSize: "12px",
-            },
+            colors: "#fff",
+            fontSize: "12px",
+          },
         },
       },
       fill: {
-        type: 'gradient',
+        type: "gradient",
         gradient: {
-          
-          shade: 'dark',
+          shade: "dark",
           type: "horizontal",
           shadeIntensity: 0.5,
           gradientToColors: undefined,
           inverseColors: true,
           opacityFrom: 1,
           opacityTo: 1,
-          stops: [50, 0, 100]
+          stops: [50, 0, 100],
         },
-      }
-    }}
+      },
+    },
+  };
+
 
 
 

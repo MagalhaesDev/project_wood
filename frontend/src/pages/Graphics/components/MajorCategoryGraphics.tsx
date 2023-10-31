@@ -12,55 +12,56 @@ interface LocaleProps {
 export function MajorCategoryGraphics() {
   const { actives } = useContext(ActivesContext);
 
-  const localesFilter = actives.reduce((acc: LocaleProps[], item) => {
-    const existingItem = acc.find((el) => el.name === item.locale);
+  const categoriesFilter = actives.reduce((acc: LocaleProps[], item) => {
+    const existingItem = acc.find((el) => el.name === item.category);
 
     if (existingItem) {
       existingItem.quantity += Number(item.value_buy);
     } else {
-      acc.push({ name: item.locale, quantity: Number(item.value_buy) });
+      acc.push({ name: item.category, quantity: Number(item.value_buy) });
     }
     return acc;
   }, []);
 
-  const localesSorted = localesFilter.sort(
+  const categoriesSorted = categoriesFilter.sort(
     (a, b) => b.quantity - a.quantity
   );
-  localesSorted.splice(5);
+  categoriesSorted.splice(5);
 
-  const locales = localesSorted.map((locale) => locale.name);
-  const values = localesSorted.map((locale) => locale.quantity);
+  const locales = categoriesSorted.map((category) => category.name);
+  const values = categoriesSorted.map((category) => category.quantity);
   
   const state: any = {
-          
     series: [{
-      name: 'Valores',
+      name: 'Preço',
       data: values,
     }],
     options: {
       chart: {
         height: 350,
         type: 'bar',
+        toolbar: {
+          show: false,
+        }
       },
       plotOptions: {
         bar: {
           columnWidth: '30%',
           distributed: true,  
         }
-
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       stroke: {
-        width: 2
+        width: 2,
       },
       xaxis: {
         labels: {
-          rotate: -45,
+          rotate: 0,
           style: {
               colors: "#fff",
-              fontSize: "12px",
+              fontSize: "10px",
             },
         },
         categories: locales,
@@ -91,6 +92,7 @@ export function MajorCategoryGraphics() {
           stops: [50, 0, 100]
         },
       }
+      
     }}
 
 

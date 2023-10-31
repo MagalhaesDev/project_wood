@@ -37,6 +37,9 @@ export function MajorLocaleDonuts() {
         width: 380,
         type: "pie",
       },
+      dataLabels: {
+        enabled: true,
+      },
       labels: locales,
       responsive: [
         {
